@@ -1,0 +1,47 @@
+App                                                                     General page wrapper
+  no props or stage
+
+    Routes                                                              Routes for home, company list, company details, job list
+        state: none
+        props: none
+
+            Homepage
+                state: none
+                props: none
+
+            CompanyList                                                 List of all companies
+                state: companies, needsCompanies, searchTerm
+                props: companies 
+
+                    SearchForm                                          Generic search form
+                        state: formData
+                        props: submitSearch()
+
+                    CompanyCard                                         Company component with title, description and image                                      
+                        state: None
+                        props: company
+
+            CompanyDetails                                              Company component with title, description and list of jobs
+                state: currCompany, needsCurrCompany
+                props: none
+
+                    Job                                                 Job component with title, salary and equity
+                        state: None
+                        props: job
+            
+            JobList                                                     List of jobs
+                state: jobs, needsJobs, searchTerm
+                props: jobs
+
+                    SearchForm                                          Generic search form
+                        state: formData
+                        props: submitSearch()
+
+                    JobCard                                             Job component with title, salary and equity
+                        state: None
+                        props: job
+
+    Navbar                                                              Navbar with home, companies and jobs 
+        state: None
+
+
