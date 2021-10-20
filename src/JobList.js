@@ -3,6 +3,19 @@ import JoblyApi from "./api";
 import SearchForm from "./SearchForm";
 import JobCard from "./JobCard";
 
+/**Renders List of Jobs
+ * 
+ * Props:
+ *  - none
+ * 
+ * State: 
+ *  - jobs : [{ id, title, salary, equity, companyHandle, companyName},...]; default is []
+ *  - needsJobs: true/false; default is true
+ *  - searchTerm : "string"; default is null
+ * 
+ * Routes -> JobList -> JobCard
+ * */
+
 function JobList() {
     // console.log("JobList: beginning");
 
@@ -24,7 +37,7 @@ function JobList() {
         }
         // console.log("right before calling getJobsFromApi");
         getJobsFromApi();
-    }, [needsJobs]);
+    }, [searchTerm, needsJobs]);
 
     function searchJobs(formData) {
         setSearchTerm(formData);

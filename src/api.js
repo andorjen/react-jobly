@@ -38,7 +38,10 @@ class JoblyApi {
 
   // Individual API routes
 
-  /** Get details on a company by handle. */
+  /** Get details on a company by handle.
+   * returns { handle, name, description, numEmployees, logoUrl, jobs }
+   * where jobs is [{ id, title, salary, equity }, ...]
+   */
 
   static async getCompany(handle) {
     let res = await this.request(`companies/${handle}`);

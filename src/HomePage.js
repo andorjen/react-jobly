@@ -1,16 +1,29 @@
 // import './HomePage.css';
-// import './jobly-background.png';
+
+
+/**Renders HomePage
+ * 
+ * Props:
+ *  - none
+ * 
+ * State: 
+ *  - none
+ * 
+ * Routes -> HomePage
+ * */
 
 function HomePage() {
 
+    // QUESTION: we tried to set image background in css, but url doesn't work in css.
+
     return (
-    <div className="homepage" 
-    style={{backgroundImage: 'url(/jobly-background.png)'}}
-    >
-        <h1>Jobly</h1>
-        {/* <img src='/jobly-background.png' alt='background-image'></img> */}
-        <p>All the jobs in one, convenient place.</p>
-    </div>
+        <div className="homepage"
+            style={{ backgroundImage: 'url(/jobly-background.png)' }}
+        >
+            <h1>Jobly</h1>
+
+            <p>All the jobs in one, convenient place.</p>
+        </div>
     );
 }
 

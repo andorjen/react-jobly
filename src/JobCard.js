@@ -1,3 +1,14 @@
+/**Renders a card for a single job
+ * 
+ * Props:
+ *  - job: {id, title, salary, equity, companyHandle, companyName}
+ * 
+ * State: 
+ *  - None
+ * 
+ * {JobList, CompanyDetails} -> JobCard
+ * */
+
 function JobCard({ job }) {
     return (
         <div>

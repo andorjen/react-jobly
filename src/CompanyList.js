@@ -3,6 +3,20 @@ import JoblyApi from "./api";
 import SearchForm from "./SearchForm";
 import CompanyCard from "./CompanyCard";
 
+
+/**Renders List of Companies
+ * 
+ * Props:
+ *  - none
+ * 
+ * State: 
+ *  - companies : [{ handle, name, description, numEmployees logoUrl},...]; default is []
+ *  - needsCompanies: true/false; default is true
+ *  - searchTerm : "string"; default is null
+ * 
+ * Routes -> CompanyList -> CompanyCard
+ * */
+
 function CompanyList() {
     // console.log("CompanyList: beginning");
 
@@ -19,7 +33,7 @@ function CompanyList() {
         }
         // console.log("right before calling getJobsFromApi");
         getCompaniesFromApi();
-    }, [needsCompanies]);
+    }, [searchTerm, needsCompanies]);
 
     function searchCompanies(formData) {
         setSearchTerm(formData);
@@ -32,7 +46,7 @@ function CompanyList() {
         <div>
             <SearchForm submitSearch={searchCompanies} />
             {companies.map(company => <CompanyCard
-                key={company.id}
+                key={company.handle}
                 company={company} />)}
         </div>
     );
