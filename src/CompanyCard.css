@@ -1,0 +1,10 @@
+.CompanyCard {
+    width: 70%;
+    margin: 10px 15%;
+    border: 1px solid lightgray;
+
+}
+
+.CompanyCard a:link {
+    text-decoration: none;
+}

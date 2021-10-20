@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import JoblyApi from "./api";
 import SearchForm from "./SearchForm";
 import JobCard from "./JobCard";
+import "./JobList";
 
 /**Renders List of Jobs
  * 
@@ -21,7 +22,7 @@ function JobList() {
 
     const [jobs, setJobs] = useState([]);
     const [needsJobs, setNeedsJobs] = useState(true);
-    const [searchTerm, setSearchTerm] = useState(null);
+    const [searchTerm, setSearchTerm] = useState("");
 
     // console.log({ jobs, needsJobs, searchTerm });
 
@@ -35,7 +36,7 @@ function JobList() {
             setJobs(jobs);
             setNeedsJobs(false);
         }
-        // console.log("right before calling getJobsFromApi");
+        // console.log("right before calling getJobsFromApi");   //try/catch
         getJobsFromApi();
     }, [searchTerm, needsJobs]);
 
@@ -47,8 +48,8 @@ function JobList() {
     if (needsJobs) return <h1>Loading...</h1>;
 
     return (
-        <div>
-            <SearchForm submitSearch={searchJobs} />
+        <div className="JobList">
+            <SearchForm submitSearch={searchJobs} initialData={searchTerm} />
             {jobs.map(job => <JobCard key={job.id} job={job} />)}
         </div>
 

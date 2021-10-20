@@ -1,8 +1,19 @@
 import { useState } from "react";
 
-function SearchForm({ submitSearch }) {
+/**Renders a form with search bar
+ * 
+ * Props:
+ *  - submitSearch(): function that sets state in parent
+ *  - initialData: searchTerm from parent
+ * 
+ * State: 
+ *  - formData
+ * 
+ * {JobList, CompanyList} -> SearchForm
+ * */
+function SearchForm({ submitSearch, initialData }) {
     // console.log("SearchForm: beginning");
-    const [formData, setFormData] = useState("");
+    const [formData, setFormData] = useState(initialData);
 
     function handleChange(evt) {
         setFormData(evt.target.value);
@@ -11,9 +22,9 @@ function SearchForm({ submitSearch }) {
     function handleSubmit(evt) {
         evt.preventDefault();
         submitSearch(formData);
-        setFormData('');
+        // setFormData('');
     }
-
+    //keep the searchTerm in search bar
     // console.log("SearchForm: about to return");
     return (
         <form onSubmit={handleSubmit}>

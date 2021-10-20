@@ -1,7 +1,7 @@
 import { Switch, Route, Redirect } from "react-router-dom";
 import HomePage from "./HomePage";
 import CompanyList from "./CompanyList";
-import CompanyDetails from "./CopmpanyDetails";
+import CompanyDetails from "./CompanyDetails";
 import Joblist from "./JobList";
 
 /**Renders Routes

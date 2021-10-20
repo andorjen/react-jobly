@@ -30,14 +30,13 @@ function CompanyDetails() {
             setNeedsCurrCompany(false);
         }
 
-        getCurrCompanyFromApi();
+        getCurrCompanyFromApi();  //try/catch with err msg
     }, [handle]);
 
-    // QUESTION: whenever useEffect has a dependency, always needs to watch for?
 
     if (needsCurrCompany) return <h1>Loading...</h1>;
-    const { name, description, jobs } = currCompany;
 
+    const { name, description, jobs } = currCompany;
     return (
         <div>
             <h2>{name}</h2>

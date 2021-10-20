@@ -22,7 +22,7 @@ function CompanyList() {
 
     const [companies, setCompanies] = useState([]);
     const [needsCompanies, setNeedsCompanies] = useState(true);
-    const [searchTerm, setSearchTerm] = useState(null);
+    const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(function fetchCompaniesOnLoad() {
 
@@ -31,20 +31,25 @@ function CompanyList() {
             setCompanies(companies);
             setNeedsCompanies(false);
         }
-        // console.log("right before calling getJobsFromApi");
+        // console.log("right before calling getJobsFromApi");  //wrap API call in
+
         getCompaniesFromApi();
+
     }, [searchTerm, needsCompanies]);
 
     function searchCompanies(formData) {
+        console.log("perform search", { formData })
         setSearchTerm(formData);
         setNeedsCompanies(true);
+
     }
 
     if (needsCompanies) return <h1>Loading...</h1>;
 
+    console.log("brefore return", { searchTerm })
     return (
         <div>
-            <SearchForm submitSearch={searchCompanies} />
+            <SearchForm submitSearch={searchCompanies} initialData={searchTerm} />
             {companies.map(company => <CompanyCard
                 key={company.handle}
                 company={company} />)}

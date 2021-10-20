@@ -1,3 +1,5 @@
+import "./JobCard.css";
+
 /**Renders a card for a single job
  * 
  * Props:
@@ -11,7 +13,7 @@
 
 function JobCard({ job }) {
     return (
-        <div>
+        <div className="JobCard">
             <h4 className="JobCard-title">{job.title}</h4>
             <p className="JobCard-company">{job.companyName}</p>
             <p className="JobCard-salary">Salary: {job.salary}</p>
@@ -19,6 +21,6 @@ function JobCard({ job }) {
         </div>
     )
 }
-
+//format salary and equity ...
 
 export default JobCard;
