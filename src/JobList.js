@@ -3,6 +3,7 @@ import JoblyApi from "./api";
 import SearchForm from "./SearchForm";
 import JobCard from "./JobCard";
 import "./JobList";
+import Error from './Error'
 
 /**Renders List of Jobs
  * 
@@ -13,6 +14,7 @@ import "./JobList";
  *  - jobs : [{ id, title, salary, equity, companyHandle, companyName},...]; default is []
  *  - needsJobs: true/false; default is true
  *  - searchTerm : "string"; default is null
+ *  - errors: array of error messages
  * 
  * Routes -> JobList -> JobCard
  * */
@@ -23,6 +25,8 @@ function JobList() {
     const [jobs, setJobs] = useState([]);
     const [needsJobs, setNeedsJobs] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
+    const [errors, setErrors] = useState([]);
+
 
     // console.log({ jobs, needsJobs, searchTerm });
 
@@ -31,10 +35,14 @@ function JobList() {
 
         async function getJobsFromApi() {
             // console.log("getJobsFromApi:", { searchTerm });
-
-            const jobs = await JoblyApi.getJobs(searchTerm);
-            setJobs(jobs);
-            setNeedsJobs(false);
+            try {
+                const jobs = await JoblyApi.getJobs(searchTerm);
+                setJobs(jobs);
+                setNeedsJobs(false);
+            }
+            catch (err) {
+                setErrors(previousErrors => [...previousErrors, ...err]);
+            }
         }
         // console.log("right before calling getJobsFromApi");   //try/catch
         getJobsFromApi();
@@ -44,6 +52,16 @@ function JobList() {
         setSearchTerm(formData);
         setNeedsJobs(true);
     }
+
+    if (errors.length > 0) {
+        return (
+            <div>
+                Errors:
+                {errors.map((error, idx) => <Error
+                    key={idx}
+                    message={error} />)}
+            </div>)
+    };
 
     if (needsJobs) return <h1>Loading...</h1>;
 
