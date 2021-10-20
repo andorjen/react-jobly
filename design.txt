@@ -25,7 +25,7 @@ App                                                                     General 
                 state: currCompany, needsCurrCompany
                 props: none
 
-                    Job                                                 Job component with title, salary and equity
+                    JobCard                                                 Job component with title, salary and equity
                         state: None
                         props: job
             
