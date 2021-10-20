@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 function SearchForm({ submitSearch }) {
+    // console.log("SearchForm: beginning");
     const [formData, setFormData] = useState("");
 
     function handleChange(evt) {
@@ -12,6 +13,8 @@ function SearchForm({ submitSearch }) {
         submitSearch(formData);
         setFormData('');
     }
+
+    // console.log("SearchForm: about to return");
     return (
         <form onSubmit={handleSubmit}>
             <input

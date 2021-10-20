@@ -46,28 +46,29 @@ class JoblyApi {
   }
 
   /** get an array of companies with/without searchTerm 
-   * returns [{},...]
+   * returns [{handle, name, description, numEmployees logoUrl},...]
   */
 
   static async getCompanies(searchTerm) {
-    const searchFilters = { name: searchTerm };
+    const searchFilters = searchTerm ? { name: searchTerm } : null;
     let res = await this.request("companies", searchFilters);
     return res.companies;
   }
 
-  /** get an array of jobs with/without searchTerm */
-
+  /** get an array of jobs with/without searchTerm
+   * returns [{id, title, salary, equity, companyHandle, companyName},...]
+  */
   static async getJobs(searchTerm) {
-    const searchFilters = { title: searchTerm };
+    // console.log("api.js - getJobs:", searchTerm);
+
+    const searchFilters = searchTerm ? { title: searchTerm } : null;
+    // console.log("searchFilters:", { searchFilters });
+
     let res = await this.request("jobs", searchFilters);
     return res.jobs;
   }
 
   // obviously, you'll add a lot here ...
 }
-
-
-
-
 
 export default JoblyApi;

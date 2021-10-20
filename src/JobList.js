@@ -4,18 +4,27 @@ import SearchForm from "./SearchForm";
 import JobCard from "./JobCard";
 
 function JobList() {
+    // console.log("JobList: beginning");
+
     const [jobs, setJobs] = useState([]);
     const [needsJobs, setNeedsJobs] = useState(true);
     const [searchTerm, setSearchTerm] = useState(null);
 
+    // console.log({ jobs, needsJobs, searchTerm });
+
     useEffect(function fetchJobsOnLoad() {
+        // console.log("fetchJobsOnLoad");
+
         async function getJobsFromApi() {
+            // console.log("getJobsFromApi:", { searchTerm });
+
             const jobs = await JoblyApi.getJobs(searchTerm);
             setJobs(jobs);
             setNeedsJobs(false);
         }
+        // console.log("right before calling getJobsFromApi");
         getJobsFromApi();
-    }, [searchTerm])
+    }, [needsJobs]);
 
     function searchJobs(formData) {
         setSearchTerm(formData);
@@ -27,7 +36,7 @@ function JobList() {
     return (
         <div>
             <SearchForm submitSearch={searchJobs} />
-            {jobs.map(job => <JobCard job={job} />)}
+            {jobs.map(job => <JobCard key={job.id} job={job} />)}
         </div>
 
     )
