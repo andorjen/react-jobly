@@ -12,10 +12,10 @@ import "./NavBar.css";
 */
 function NavBar() {
     return (
-        <nav className="NavBar">
-            <NavLink className="NavBar-logo" exact to="/" >Jobly</NavLink>
-            <NavLink className="NavBar-link" exact to="/companies" >Companies</NavLink>
-            <NavLink className="NavBar-link" exact to="/jobs" >Jobs</NavLink>
+        <nav className="NavBar navbar navbar-light bg-light">
+            <NavLink className="NavBar-logo navbar-brand" exact to="/" >Jobly</NavLink>
+            <NavLink className="NavBar-link nav-link" exact to="/companies" >Companies</NavLink>
+            <NavLink className="NavBar-link nav-link" exact to="/jobs" >Jobs</NavLink>
         </nav>
     );
 }

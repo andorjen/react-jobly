@@ -28,6 +28,7 @@ function SearchForm({ submitSearch, initialData }) {
     // console.log("SearchForm: about to return");
     return (
         <form onSubmit={handleSubmit}>
+
             <input
                 id="searchTerm"
                 name="searchTerm"
@@ -35,7 +36,8 @@ function SearchForm({ submitSearch, initialData }) {
                 value={formData}
                 onChange={handleChange}
             />
-            <button>Submit</button>
+            <button className="btn btn-primary">Submit</button>
+
         </form>
     )
 }

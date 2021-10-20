@@ -15,7 +15,7 @@ import Routes from "./Routes";
 */
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{ backgroundImage: 'url(/jobly-background.png)', height: "100vh" }}>
       <BrowserRouter>
         <NavBar />
         <Routes />

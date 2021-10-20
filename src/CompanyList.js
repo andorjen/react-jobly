@@ -46,7 +46,7 @@ function CompanyList() {
     }, [searchTerm, needsCompanies]);
 
     function searchCompanies(formData) {
-        console.log("perform search", { formData })
+        // console.log("perform search", { formData })
         setSearchTerm(formData);
         setNeedsCompanies(true);
     }
@@ -63,7 +63,7 @@ function CompanyList() {
 
     if (needsCompanies) return <h1>Loading...</h1>;
 
-    console.log("brefore return", { searchTerm })
+    // console.log("brefore return", { searchTerm })
     return (
         <div>
             <SearchForm submitSearch={searchCompanies} initialData={searchTerm} />

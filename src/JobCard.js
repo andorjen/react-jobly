@@ -1,5 +1,5 @@
 import "./JobCard.css";
-
+import { addCommas } from "./helper"
 /**Renders a card for a single job
  * 
  * Props:
@@ -12,15 +12,17 @@ import "./JobCard.css";
  * */
 
 function JobCard({ job }) {
+    const { title, companyName, salary, equity } = job;
+    const formatedSalary = `$ ${addCommas(salary)}`;
+
     return (
         <div className="JobCard">
-            <h4 className="JobCard-title">{job.title}</h4>
-            <p className="JobCard-company">{job.companyName}</p>
-            <p className="JobCard-salary">Salary: {job.salary}</p>
-            <p className="JobCard-equity">Equity: {job.equity}</p>
+            <h4 className="JobCard-title">{title}</h4>
+            <p className="JobCard-company">{companyName}</p>
+            <p className="JobCard-salary">Salary: {formatedSalary}</p>
+            {Number(equity) > 0 && <p className="JobCard-equity">Equity: {equity}%</p>}
         </div>
     )
 }
-//format salary and equity ...
 
 export default JobCard;
