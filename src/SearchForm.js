@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 function SearchForm({ submitSearch }) {
-    const [formData, setFormData] = UseState("");
+    const [formData, setFormData] = useState("");
 
     function handleChange(evt) {
         setFormData(evt.target.value);
     }
 
-    function handleSubmit() {
+    function handleSubmit(evt) {
         evt.preventDefault();
         submitSearch(formData);
         setFormData('');

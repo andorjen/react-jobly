@@ -1,4 +1,4 @@
-function JobCard({job}) {
+function JobCard({ job }) {
     return (
         <div>
             <h4 className="JobCard-title">{job.title}</h4>
