@@ -4,7 +4,8 @@ App                                                                             
   context: none
 
     JoblyApp                                                                            Main app component
-        state:   currUser
+        state:   currUser, token
+        effect:  when token changes, update currUser
         props:   none
         (define login(), register(), logout(), updateUser())
 

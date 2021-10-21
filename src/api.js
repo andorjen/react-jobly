@@ -71,6 +71,54 @@ class JoblyApi {
     return res.jobs;
   }
 
+  /** function to log in a user, takes an object loginInfo: {username, password}
+   * returns token */
+  static async login(loginInfo) {
+    const res = await this.request("auth/token", loginInfo, "post");
+    this.token = res.token;
+    return res.token;
+  }
+
+  /** function to register a new user
+   * takes an object newUserData: { username, password, firstName, lastName, email }
+   * returns token */
+  static async register(newUserData) {
+    const res = await this.request("auth/register", newUserData, "post");
+    this.token = res.token;
+    return res.token;
+  }
+
+  /** function that updates a user's information,
+   * takes an username, and an object userData, can include { firstName, lastName, password, email}
+   * returns user: { username, firstName, lastName, email, isAdmin }
+   */
+  static async updateUser(username, userData) {
+    const res = await this.request(`users/${username}`, userData, "patch");
+    return res.user;
+  }
+
+
+  /**function that gets the information for one user
+   * takes username,  
+   * returns { username, firstName, lastName, isAdmin, jobs }
+   * where jobs is { id, title, companyHandle, companyName, state }
+   * */
+
+  static async getUser(username) {
+    const res = await this.request(`users/${username}`);
+    return res.user;
+  }
+
+  /**function that applies a job for a user,
+   * takes username and jobId,
+   * returns jobId
+   */
+
+  static async applyForJob(username, jobId) {
+    const res = await this.request(`users/${username}/jobs/${jobId}`);
+    return res.applied;
+  }
+
   // obviously, you'll add a lot here ...
 }
 
