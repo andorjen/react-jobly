@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { Redirect } from "react-router-dom";
+import CurrUserContext from "./CurrUserContext";
+import Error from "./Error";
 // import "./LoginForm.css"
 
 /**Renders a login form
@@ -7,33 +10,42 @@ import { useState } from "react";
  *  - login(): function that authenticates user data
  * 
  * State: 
- *  - formData, currUser
+ *  - formData
+ *  - errors
+ * 
+ * Context:
+ *  - currUser
  * 
  * {Routes} -> LoginForm
  * */
 function LoginForm({ login }) {
     const [formData, setFormData] = useState({});
-    const [errors, setErrors] = useState();
-    const currUser = useContext(currUser);
+    const [errors, setErrors] = useState([]);
+    const user = useContext(CurrUserContext);
 
-    if (currUser) return <Redirect to="/" />;
+    if (user) return <Redirect to="/" />;
 
     function handleChange(evt) {
         setFormData(evt.target.value);
     }
 
     function handleSubmit(evt) {
-        evt.preventDefault();
-        login(formData);
+        try {
+            evt.preventDefault();
+            login(formData);
+        } catch (err) {
+            setErrors(err);
+        }
+
     }
 
     return (
-        <div>
+        <div className="row">
             <h1>Log In</h1>
             <form onSubmit={handleSubmit}>
-                <div className="LoginForm">
+                <div className="LoginForm col-6 offset-3">
                     <div className="LoginForm-username">
-                        <label for="username">Username</label>
+                        <label htmlFor="username">Username</label>
                         <input
                             className="form-control"
                             id="username"
@@ -43,7 +55,7 @@ function LoginForm({ login }) {
                         />
                     </div>
                     <div className="LoginForm-password">
-                        <label for="password">Password</label>
+                        <label htmlFor="password">Password</label>
                         <input
                             className="form-control"
                             id="password"
@@ -52,8 +64,9 @@ function LoginForm({ login }) {
                             onChange={handleChange}
                         />
                     </div>
+                    {errors.length > 0 && <Error messages={errors} />}
                     <div className="LoginForm-button">
-                        <button className="btn text-white">Submit</button>
+                        <button className="btn btn-primary">Submit</button>
                     </div>
                 </div>
             </form>

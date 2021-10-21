@@ -3,6 +3,9 @@ import HomePage from "./HomePage";
 import CompanyList from "./CompanyList";
 import CompanyDetails from "./CompanyDetails";
 import Joblist from "./JobList";
+import LoginForm from "./LoginForm";
+import SignUpForm from "./SignUpForm";
+import ProfileForm from "./ProfileForm";
 
 /**Renders Routes
  * 

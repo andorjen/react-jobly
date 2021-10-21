@@ -2,7 +2,8 @@ import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 import NavBar from "./NavBar";
 import Routes from "./Routes";
-import { position } from 'dom-helpers';
+import { useState } from "react";
+import CurrUserContext from './CurrUserContext';
 
 /**Wrapper for jobly app
  * 
@@ -15,13 +16,18 @@ import { position } from 'dom-helpers';
  * App -> {NavBar, Routes}
 */
 function App() {
+  const [currUser, setCurrUser] = useState({ username: "Jenny" });
+  const [token, setToken] = useState(null);
+
+
   return (
     <div className="App">
 
       <BrowserRouter>
-        <NavBar />
-        <Routes />
-        {/* <AuthRoutes /> */}
+        <CurrUserContext.Provider value={currUser}>
+          <NavBar />
+          <Routes />
+        </CurrUserContext.Provider>
       </BrowserRouter>
 
     </div>

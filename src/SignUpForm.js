@@ -1,5 +1,7 @@
-import { useState } from "react";
-import Redirect from 'react-router-dom';
+import { useState, useContext } from "react";
+import { Redirect } from 'react-router-dom';
+import CurrUserContext from "./CurrUserContext";
+import Error from "./Error";
 // import "./SignUpForm.css"
 
 /**Renders a sign up form
@@ -8,36 +10,43 @@ import Redirect from 'react-router-dom';
  *  - register(): function that signs up a new user
  * 
  * State: 
- *  - formData, errors
+ *  - formData
+ *  - errors
  * 
  * Context:
  *  - currUser
  * 
  * {Routes} -> SignUpForm
  * */
-function SignUpForm({ login }) {
+function SignUpForm({ register }) {
     const [formData, setFormData] = useState({});
-    const [errors, setErrors] = useState();
-    // const currUser = useContext(currUser);
+    const [errors, setErrors] = useState([]);
 
-    // if (currUser) return <Redirect to="/" />;
+    const user = useContext(CurrUserContext);
+    if (user) return <Redirect to="/" />;
 
     function handleChange(evt) {
         setFormData(evt.target.value);
     }
 
     function handleSubmit(evt) {
-        evt.preventDefault();
-        register(formData);
+        try {
+            evt.preventDefault();
+            register(formData);
+        }
+        catch (err) {
+            setErrors(err)
+        }
+
     }
 
     return (
-        <div>
+        <div className="row">
             <h1>Sign Up</h1>
             <form onSubmit={handleSubmit}>
-                <div className="SignUpForm">
+                <div className="SignUpForm col-6 offset-3">
                     <div className="SignUpForm-username">
-                        <label for="username">Username</label>
+                        <label htmlFor="username">Username</label>
                         <input
                             className="form-control"
                             id="username"
@@ -47,7 +56,7 @@ function SignUpForm({ login }) {
                         />
                     </div>
                     <div className="SignUpForm-password">
-                        <label for="password">Password</label>
+                        <label htmlFor="password">Password</label>
                         <input
                             className="form-control"
                             id="password"
@@ -57,7 +66,7 @@ function SignUpForm({ login }) {
                         />
                     </div>
                     <div className="SignUpForm-firstName">
-                        <label for="firstName">First Name</label>
+                        <label htmlFor="firstName">First Name</label>
                         <input
                             className="form-control"
                             id="firstName"
@@ -67,7 +76,7 @@ function SignUpForm({ login }) {
                         />
                     </div>
                     <div className="SignUpForm-lastName">
-                        <label for="lastName">Last Name</label>
+                        <label htmlFor="lastName">Last Name</label>
                         <input
                             className="form-control"
                             id="lastName"
@@ -77,7 +86,7 @@ function SignUpForm({ login }) {
                         />
                     </div>
                     <div className="SignUpForm-email">
-                        <label for="email">Email</label>
+                        <label htmlFor="email">Email</label>
                         <input
                             className="form-control"
                             id="email"
@@ -86,8 +95,9 @@ function SignUpForm({ login }) {
                             onChange={handleChange}
                         />
                     </div>
+                    {errors.length > 0 && <Error messages={errors} />}
                     <div className="SignUpForm-button">
-                        <button className="btn text-white">Submit</button>
+                        <button className="btn btn-primary">Submit</button>
                     </div>
                 </div>
             </form>
@@ -95,4 +105,6 @@ function SignUpForm({ login }) {
     )
 }
 
-export default RegisterForm;
+
+
+export default SignUpForm;
