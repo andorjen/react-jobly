@@ -83,6 +83,7 @@ class JoblyApi {
    * takes an object newUserData: { username, password, firstName, lastName, email }
    * returns token */
   static async register(newUserData) {
+    console.log("Api newUserData:", { newUserData });
     const res = await this.request("auth/register", newUserData, "post");
     this.token = res.token;
     return res.token;
@@ -118,7 +119,6 @@ class JoblyApi {
     const res = await this.request(`users/${username}/jobs/${jobId}`);
     return res.applied;
   }
-
   // obviously, you'll add a lot here ...
 }
 

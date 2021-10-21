@@ -1,93 +1,88 @@
 App                                                                                     General page wrapper
-  state: none
-  props: none
-  context: none
+    state:   currUser, token
+    effect:  when token changes, update currUser
+    props:   none
+    (define login(), signUp(), logout(), updateUser())
 
-    JoblyApp                                                                            Main app component
-        state:   currUser, token
-        effect:  when token changes, update currUser
-        props:   none
-        (define login(), signUp(), logout(), updateUser())
+        Provider.UserContext
+            (currUser)
 
-            Provider.UserContext
-                (currUser)
+                Routes                                                              Routes for home, company list, company details, job list, 
+                    state: none                                                     login form, signUp form, update user form
+                    props: login(), signUp(), updateUser()     
 
-                    Routes                                                              Routes for home, company list, company details, job list, 
-                        state: none                                                     login form, signUp form, update user form
-                        props: currUser, login(), signUp(), updateUser()     
+                        LoginForm                                                   Form to login the user, save the currUser to JoblyApp
+                            state: formData, errors                                 state and save token to JoblyApi
+                            props: login()
+                            context: currUser
 
-                            LoginForm                                                   Form to login the user, save the currUser to JoblyApp
-                                state: formData, errors                                 state and save token to JoblyApi
-                                props: login()
-                                context: currUser
+                        SignUpForm (CODE REVIEW: needs currUser)                  Form to signUp new user, save the currUser to JoblyApp
+                            state: formData, errors                                 state and save token to JoblyApi
+                            props: signUp()
+                            context: currUser
+                        
+                        Logout (CODE REVIEW: Doesn't need to be a component)        Sets currUser state to null, sets token in JoblyApi to null
+                            state: none
+                            props: logout()
 
-                            SignUpForm (CODE REVIEW: needs currUser)                  Form to signUp new user, save the currUser to JoblyApp
-                                state: formData, errors                                 state and save token to JoblyApi
-                                props: signUp()
-                                context: currUser
-                            
-                            Logout (CODE REVIEW: Doesn't need to be a component)        Sets currUser state to null, sets token in JoblyApi to null
-                                state: none
-                                props: logout()
+                        ProfileForm                                                Form to edit user.
+                            state: formData, errors
+                            props: updateUser(), currUser                                                 
 
-                            ProfileForm                                                Form to edit user.
-                                state: formData, errors
-                                props: updateUser(), currUser                                                 
+                        Homepage                                                    Homepage component                                         
+                            state: none
+                            props: none
 
-                            Homepage                                                    Homepage component                                         
-                                state: none
-                                props: none
+                        CompanyList                                                 List of all companies
+                            state: companies, needsCompanies, searchTerm
+                            props: none
+                            context: currUser
 
-                            CompanyList                                                 List of all companies
-                                state: companies, needsCompanies, searchTerm
-                                props: none
-                                context: currUser
+                                SearchForm                                          Generic search form
+                                    state: formData
+                                    props: submitSearch()
 
-                                    SearchForm                                          Generic search form
-                                        state: formData
-                                        props: submitSearch()
+                                CompanyCard                                         Company component with title, description and image                                      
+                                    state: None
+                                    props: company
 
-                                    CompanyCard                                         Company component with title, description and image                                      
-                                        state: None
-                                        props: company
+                        CompanyDetails                                              Company component with title, description and list of jobs
+                            state: currCompany, needsCurrCompany
+                            props: none
+                            context: currUser
 
-                            CompanyDetails                                              Company component with title, description and list of jobs
-                                state: currCompany, needsCurrCompany
-                                props: none
-                                context: currUser
+                                JobCardList                                         Component for list of job cards, with state of which jobs
+                                    state: none                                     have been applied to
+                                    props: jobs
+                                    context: currUser
 
-                                    JobCardList                                         Component for list of job cards, with state of which jobs
-                                        state: none                                     have been applied to
-                                        props: jobs
-                                        context: currUser
+                                        JobCard                                     Job component with title, salary and equity
+                                            state: None
+                                            props: job, isApplied
+                        
+                        JobList                                                     List of jobs
+                            state: jobs, needsJobs, searchTerm
+                            props: none
+                            context: currUser
 
-                                            JobCard                                     Job component with title, salary and equity
-                                                state: None
-                                                props: job, isApplied
-                            
-                            JobList                                                     List of jobs
-                                state: jobs, needsJobs, searchTerm
-                                props: none
-                                context: currUser
+                                SearchForm                                          Generic search form
+                                    state: formData
+                                    props: submitSearch()
 
-                                    SearchForm                                          Generic search form
-                                        state: formData
-                                        props: submitSearch()
+                                JobCardList                                         Component for list of job cards, with state of which jobs
+                                    state: none                                     have been applied to
+                                    props: jobs
+                                    context: currUser
 
-                                    JobCardList                                         Component for list of job cards, with state of which jobs
-                                        state: none                                     have been applied to
-                                        props: jobs
-                                        context: currUser
-
-                                            JobCard                                     Job component with title, salary and equity
-                                                state: None
-                                                props: job, isApplied
+                                        JobCard                                     Job component with title, salary and equity
+                                            state: None
+                                            props: job, isApplied
 
 
-                    Navbar                                                              Navbar with home, companies, jobs, login, sign up,  
-                        state: None                                                     profile and logout
-                        props: logout()
-                        context: currUser
+                Navbar                                                              Navbar with home, companies, jobs, login, sign up,  
+                    state: None                                                     profile and logout
+                    props: logout()
+                    context: currUser
 
 JoblyApi 
     (stores the token)

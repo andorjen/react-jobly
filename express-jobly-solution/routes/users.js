@@ -82,7 +82,7 @@ router.get("/:username", ensureCorrectUserOrAdmin, async function (req, res, nex
 /** PATCH /[username] { user } => { user }
  *
  * Data can include:
- *   { firstName, lastName, password, email }
+ *   { firstName, lastName, password, email } 
  *
  * Returns { username, firstName, lastName, email, isAdmin }
  *

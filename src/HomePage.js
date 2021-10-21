@@ -1,4 +1,6 @@
 import './HomePage.css';
+import { useContext } from "react";
+import CurrUserContext from "./CurrUserContext";
 
 
 /**Renders HomePage
@@ -13,12 +15,18 @@ import './HomePage.css';
  * */
 
 function HomePage() {
+    const user = useContext(CurrUserContext);
 
     return (
         <div className="HomePage">
             <div className="HomePage-content">
                 <h1 className="HomePage-title">Jobly</h1>
-                <p className="HomePage-description">All the jobs in one, convenient place.</p>
+                <p className="HomePage-description">
+                    All the jobs in one, convenient place.
+                </p>
+
+                {user && <h2>Welcome Back, {user.username}!</h2>}
+
             </div>
         </div>
     );

@@ -10,7 +10,7 @@ import ProfileForm from "./ProfileForm";
 /**Renders Routes
  * 
  * Props:
- *  - none
+ *  - login() ,register() , updateUser()
  * 
  * State: 
  *  - none
@@ -18,7 +18,7 @@ import ProfileForm from "./ProfileForm";
  * App -> Routes -> {HomePage, CompanyList, CompanyDetails, JobList}
 */
 
-function Routes() {
+function Routes({ login, register, updateUser }) {
 
     return (
         <Switch>
@@ -26,13 +26,13 @@ function Routes() {
                 <HomePage />
             </Route>
             <Route exact path="/login">
-                <LoginForm />
+                <LoginForm login={login} />
             </Route>
             <Route exact path="/signup">
-                <SignUpForm />
+                <SignUpForm register={register} />
             </Route>
             <Route exact path="/profile">
-                <ProfileForm />
+                <ProfileForm updateUser={updateUser} />
             </Route>
             <Route exact path="/companies">
                 <CompanyList />

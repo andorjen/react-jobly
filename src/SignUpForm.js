@@ -19,18 +19,21 @@ import Error from "./Error";
  * {Routes} -> SignUpForm
  * */
 function SignUpForm({ register }) {
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState({ username: "", password: "", firstName: "", lastName: "", email: "" });
     const [errors, setErrors] = useState([]);
 
     const user = useContext(CurrUserContext);
     if (user) return <Redirect to="/" />;
 
     function handleChange(evt) {
-        setFormData(evt.target.value);
+        console.log(formData);
+        const { name, value } = evt.target;
+        setFormData(previousData => ({ ...previousData, [name]: value }));
     }
 
     function handleSubmit(evt) {
         try {
+            console.log("SignUpForm data:", { formData });
             evt.preventDefault();
             register(formData);
         }
