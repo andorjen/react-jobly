@@ -54,7 +54,6 @@ function CompanyList() {
     if (errors.length > 0) {
         return (
             <div>
-                Errors:
                 {errors.map((error, idx) => <Error
                     key={idx}
                     message={error} />)}
@@ -65,7 +64,7 @@ function CompanyList() {
 
     // console.log("brefore return", { searchTerm })
     return (
-        <div>
+        <div className="background-theme">
             <SearchForm submitSearch={searchCompanies} initialData={searchTerm} />
             {companies.map(company => <CompanyCard
                 key={company.handle}

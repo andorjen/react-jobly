@@ -1,4 +1,16 @@
-.homepage {
-    /* background-image: 'url(/jobly-background.png)'; */
-    /* background-image: url('http://react-jobly-1.surge.sh/static/media/background.6549e727.png'); */
+.HomePage-content {
+    color: white;
+    background-color: rgba(170, 204, 0, 0.5);
+    width: 30%;
+    padding: 30px;
+    border-radius: 4px;
+}
+
+.HomePage-description {
+    display: block;
+    font-size:1.5rem;
+}
+
+.HomePage-title {
+    font-size: 2rem;
 }

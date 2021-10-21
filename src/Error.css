@@ -1,0 +1,8 @@
+.Error {
+    background-color: rgb(245, 79, 79);
+    color: white;
+    width: 50%;
+    margin: 30px 25%;
+    padding: 15px;
+    border-radius: 8px;
+}

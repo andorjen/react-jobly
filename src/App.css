@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+.HomePage {
+  background-image: url("https://images.unsplash.com/photo-1502691876148-a84978e59af8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80");
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+}
+
+.background-theme {
+  background-image: url("https://images.unsplash.com/photo-1576502200272-341a4b8d5ebb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80");
+  height: 100%;
+  background-attachment: fixed;
+}
+

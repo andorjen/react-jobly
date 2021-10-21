@@ -16,20 +16,20 @@ import { position } from 'dom-helpers';
 */
 function App() {
   return (
-    <div style={{}}>
-      <div className="App container-fluid" style={{
-        backgroundImage: 'url(/jobly-background.png)',
-        height: "100vh"
-      }}>
-        <div>
-          <BrowserRouter>
-            <NavBar />
-            <Routes />
-          </BrowserRouter>
-        </div>
-      </div>
+    <div className="App">
+
+      <BrowserRouter>
+        <NavBar />
+        <Routes />
+      </BrowserRouter>
+
     </div>
   );
 }
 
+// style={{
+//   backgroundImage: 'url(/jobly-background.png)',
+//   height: "100vh",
+//   backgroundAttachment: "fixed"
+// }}
 export default App;

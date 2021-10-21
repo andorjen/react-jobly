@@ -7,17 +7,16 @@
     padding: 0.5em 0;
     width: 10em;
     display: inline-block;
-    color: tomato;
     text-decoration: none;
+    color: black;
 }
 
 .NavBar a:hover {
-    background-color: black;
-    color: white !important;
+    color: purple !important;
 }
 
 .NavBar a.active {
     font-weight: bold;
-    color: black;
+    color:purple;
 }
 

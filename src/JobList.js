@@ -56,7 +56,6 @@ function JobList() {
     if (errors.length > 0) {
         return (
             <div>
-                Errors:
                 {errors.map((error, idx) => <Error
                     key={idx}
                     message={error} />)}
@@ -66,7 +65,7 @@ function JobList() {
     if (needsJobs) return <h1>Loading...</h1>;
 
     return (
-        <div className="JobList">
+        <div className="background-theme">
             <SearchForm submitSearch={searchJobs} initialData={searchTerm} />
             {jobs.map(job => <JobCard key={job.id} job={job} />)}
         </div>

@@ -1,7 +1,11 @@
 .JobCard {
-    width: 70%;
-    margin: 20px 15%;
+    width: 50%;
+    margin: 20px 25%;
     padding: 10px;
     border: 1px solid lightgray;
     background-color: white;
+}
+
+.JobCard-title {
+    font-size: 1.2rem;
 }

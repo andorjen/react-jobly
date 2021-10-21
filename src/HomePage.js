@@ -1,4 +1,4 @@
-// import './HomePage.css';
+import './HomePage.css';
 
 
 /**Renders HomePage
@@ -14,13 +14,12 @@
 
 function HomePage() {
 
-    // QUESTION: we tried to set image background in css, but url doesn't work in css.
-
     return (
-        <div className="homepage" >
-            <h1>Jobly</h1>
-
-            <p>All the jobs in one, convenient place.</p>
+        <div className="HomePage">
+            <div className="HomePage-content">
+                <h1 className="HomePage-title">Jobly</h1>
+                <p className="HomePage-description">All the jobs in one, convenient place.</p>
+            </div>
         </div>
     );
 }

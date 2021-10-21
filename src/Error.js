@@ -1,3 +1,4 @@
+import "./Error.css";
 
 /** Renders an error message
  * 
@@ -10,7 +11,7 @@
  */
 function Error({ message }) {
     return (
-        <div>
+        <div className="Error">
             {message}
         </div>
     );

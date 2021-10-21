@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import JoblyApi from "./api";
 import JobCard from "./JobCard";
 import Error from './Error';
+import "./CompanyDetails.css";
 
 /**Renders Details of one company
  * 
@@ -44,7 +45,6 @@ function CompanyDetails() {
         console.log({ errors });
         return (
             <div>
-                Errors:
                 {errors.map((error, idx) => <Error
                     key={idx}
                     message={error} />)}
@@ -55,9 +55,11 @@ function CompanyDetails() {
 
     const { name, description, jobs } = currCompany;
     return (
-        <div>
-            <h2>{name}</h2>
-            <p>{description}</p>
+        <div className="background-theme">
+            <div className="CompanyDetails-top">
+                <h2>{name}</h2>
+                <p>{description}</p>
+            </div>
             {jobs.map(job => <JobCard
                 key={job.id}
                 job={job} />)}
