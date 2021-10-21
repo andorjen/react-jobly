@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 import NavBar from "./NavBar";
 import Routes from "./Routes";
+import { position } from 'dom-helpers';
 
 /**Wrapper for jobly app
  * 
@@ -15,11 +16,18 @@ import Routes from "./Routes";
 */
 function App() {
   return (
-    <div className="App" style={{ backgroundImage: 'url(/jobly-background.png)', height: "100vh" }}>
-      <BrowserRouter>
-        <NavBar />
-        <Routes />
-      </BrowserRouter>
+    <div style={{}}>
+      <div className="App container-fluid" style={{
+        backgroundImage: 'url(/jobly-background.png)',
+        height: "100vh"
+      }}>
+        <div>
+          <BrowserRouter>
+            <NavBar />
+            <Routes />
+          </BrowserRouter>
+        </div>
+      </div>
     </div>
   );
 }

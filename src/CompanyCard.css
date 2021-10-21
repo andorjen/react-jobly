@@ -1,10 +1,29 @@
 .CompanyCard {
     width: 70%;
-    margin: 10px 15%;
+    margin: 20px 15%;
+    padding: 10px;
     border: 1px solid lightgray;
-
+    background-color: white;
+    text-align: left;
+  
 }
 
 .CompanyCard a:link {
     text-decoration: none;
+    color: black;
+}
+
+.CompanyCard a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+.CompanyCard a:hover {
+    text-decoration: none;
+    color:darkblue;
+}
+
+.CompanyCard-logo {
+    width: 50px;
+    height: auto;
 }

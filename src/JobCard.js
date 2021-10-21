@@ -16,7 +16,7 @@ function JobCard({ job }) {
     const formatedSalary = `$ ${addCommas(salary)}`;
 
     return (
-        <div className="JobCard">
+        <div className="JobCard card">
             <h4 className="JobCard-title">{title}</h4>
             <p className="JobCard-company">{companyName}</p>
             <p className="JobCard-salary">Salary: {formatedSalary}</p>
