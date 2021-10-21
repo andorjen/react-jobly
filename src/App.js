@@ -21,6 +21,7 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <Routes />
+        {/* <AuthRoutes /> */}
       </BrowserRouter>
 
     </div>
