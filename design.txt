@@ -7,30 +7,30 @@ App                                                                             
         state:   currUser, token
         effect:  when token changes, update currUser
         props:   none
-        (define login(), register(), logout(), updateUser())
+        (define login(), signUp(), logout(), updateUser())
 
             Provider.UserContext
                 (currUser)
 
                     Routes                                                              Routes for home, company list, company details, job list, 
-                        state: none                                                     login form, register form, update user form
-                        props: currUser, login(), register(), updateUser()     
+                        state: none                                                     login form, signUp form, update user form
+                        props: currUser, login(), signUp(), updateUser()     
 
                             LoginForm                                                   Form to login the user, save the currUser to JoblyApp
                                 state: formData, errors                                 state and save token to JoblyApi
                                 props: login()
                                 context: currUser
 
-                            RegisterForm (CODE REVIEW: needs currUser)                  Form to register new user, save the currUser to JoblyApp
+                            SignUpForm (CODE REVIEW: needs currUser)                  Form to signUp new user, save the currUser to JoblyApp
                                 state: formData, errors                                 state and save token to JoblyApi
-                                props: register()
+                                props: signUp()
                                 context: currUser
                             
                             Logout (CODE REVIEW: Doesn't need to be a component)        Sets currUser state to null, sets token in JoblyApi to null
                                 state: none
                                 props: logout()
 
-                            EditUserForm                                                Form to edit user.
+                            ProfileForm                                                Form to edit user.
                                 state: formData, errors
                                 props: updateUser(), currUser                                                 
 

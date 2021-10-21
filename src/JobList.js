@@ -54,13 +54,9 @@ function JobList() {
     }
 
     if (errors.length > 0) {
-        return (
-            <div>
-                {errors.map((error, idx) => <Error
-                    key={idx}
-                    message={error} />)}
-            </div>)
-    };
+        console.log({ errors });
+        return <Error messages={errors} />;
+    }
 
     if (needsJobs) return <h1>Loading...</h1>;
 

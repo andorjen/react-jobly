@@ -22,6 +22,15 @@ function Routes() {
             <Route exact path="/">
                 <HomePage />
             </Route>
+            <Route exact path="/login">
+                <LoginForm />
+            </Route>
+            <Route exact path="/signup">
+                <SignUpForm />
+            </Route>
+            <Route exact path="/profile">
+                <ProfileForm />
+            </Route>
             <Route exact path="/companies">
                 <CompanyList />
             </Route>

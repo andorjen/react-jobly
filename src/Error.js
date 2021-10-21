@@ -6,13 +6,13 @@ import "./Error.css";
  *  - none
  * 
  * Props:
- *  - message string
+ *  - Array of errror messages
  * 
  */
-function Error({ message }) {
+function Error({ messages }) {
     return (
         <div className="Error">
-            {message}
+            {messages.map(message => <p>{message}</p>)}
         </div>
     );
 }

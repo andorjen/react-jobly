@@ -52,13 +52,9 @@ function CompanyList() {
     }
 
     if (errors.length > 0) {
-        return (
-            <div>
-                {errors.map((error, idx) => <Error
-                    key={idx}
-                    message={error} />)}
-            </div>)
-    };
+        console.log({ errors });
+        return <Error messages={errors} />;
+    }
 
     if (needsCompanies) return <h1>Loading...</h1>;
 

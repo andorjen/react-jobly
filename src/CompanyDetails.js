@@ -43,13 +43,8 @@ function CompanyDetails() {
 
     if (errors.length > 0) {
         console.log({ errors });
-        return (
-            <div>
-                {errors.map((error, idx) => <Error
-                    key={idx}
-                    message={error} />)}
-            </div>)
-    };
+        return <Error messages={errors} />;
+    }
 
     if (needsCurrCompany) return <h1>Loading...</h1>;
 
