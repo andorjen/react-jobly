@@ -12,7 +12,7 @@ import "./Error.css";
 function Error({ messages }) {
     return (
         <div className="Error">
-            {messages.map(message => <p>{message}</p>)}
+            {messages.map((message, idx) => <p key={idx}>{message}</p>)}
         </div>
     );
 }

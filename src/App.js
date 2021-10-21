@@ -12,7 +12,9 @@ import JoblyApi from './api';
  * - none
  * 
  * State: 
- * - currUser, token
+ * - currUser
+ * - token
+ * - errors
  * 
  * App -> {NavBar, Routes}
 */
@@ -20,19 +22,29 @@ import JoblyApi from './api';
 function App() {
   const [currUser, setCurrUser] = useState(null);
   const [token, setToken] = useState(null);
-  // const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState([]);
+
+  // console.log('APP', { currUser, token });
 
   async function login(loginInfo) {
-    const token = await JoblyApi.login(loginInfo);
-    setToken(token);
-    setCurrUser(loginInfo.username);
+    try {
+      const token = await JoblyApi.login(loginInfo);
+      setCurrUser({ username: loginInfo.username });
+      setToken(token);
+    } catch (err) {
+      setErrors(err);
+    }
   }
 
   async function signUp(userData) {
-    console.log("App userData:", { userData });
-    const token = await JoblyApi.register(userData);
-    setToken(token);
-    setCurrUser(userData.username);
+    // console.log("App userData:", { userData });
+    try {
+      const token = await JoblyApi.register(userData);
+      setCurrUser({ username: userData.username });
+      setToken(token);
+    } catch (err) {
+      setErrors(err);
+    }
   }
 
   function logout() {
@@ -41,16 +53,25 @@ function App() {
   }
 
   async function updateUser(formData) {
-    const updatedUser = await JoblyApi.updateUser(currUser.username, formData); //We're going with this design to prevent cases
-    setCurrUser(updatedUser);                                                   // where the username in the form is tampered with
+    try {
+      const updatedUser = await JoblyApi.updateUser(currUser.username, formData); //We're going with this design to prevent cases
+      setCurrUser(updatedUser);                                                   // where the username in the form is tampered with 
+    } catch (err) {
+      setErrors(err);
+    }
   }
 
   useEffect(function fetchUserOnTokenChange() {
     async function getUserFromApi() {
-      const user = await JoblyApi.getUser(currUser);
-      setCurrUser(user);
+      try {
+        const user = await JoblyApi.getUser(currUser.username);
+        // console.log("fetch user details", user)
+        setCurrUser(user);
+      } catch (err) {
+        setErrors(err);
+      }
     }
-    if (token) getUserFromApi();
+    if (currUser) getUserFromApi();
   }, [token]);
 
   return (
@@ -59,7 +80,7 @@ function App() {
       <BrowserRouter>
         <CurrUserContext.Provider value={currUser}>
           <NavBar logout={logout} />
-          <Routes login={login} register={signUp} updateUser={updateUser} />
+          <Routes login={login} register={signUp} updateUser={updateUser} errors={errors} />
         </CurrUserContext.Provider>
       </BrowserRouter>
 
