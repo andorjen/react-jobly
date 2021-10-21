@@ -1,47 +1,90 @@
 App                                                                     General page wrapper
-  no props or stage
+  state: none
+  props: none
+  context: none
 
-    Routes                                                              Routes for home, company list, company details, job list
-        state: none
-        props: none
+    JoblyApp
+        state:   currUser
+        props:   none
+        (define authenticate(), register(), logout(), updateUser())
 
-            Homepage
-                state: none
-                props: none
+            Provider.UserContext
+                (currUser)
 
-            CompanyList                                                 List of all companies
-                state: companies, needsCompanies, searchTerm
-                props: none
+                    Routes                                                              Routes for home, company list, company details, job list
+                        state: none
+                        props: authenticate(), register(), logout(), updateUser()
 
-                    SearchForm                                          Generic search form
-                        state: formData
-                        props: submitSearch()
+                            Homepage
+                                state: none
+                                props: none
 
-                    CompanyCard                                         Company component with title, description and image                                      
+                            Login
+                                state: none
+                                props: authenticate()
+
+                                    LoginForm
+                                        state: formData
+                                        props: login()
+
+                            Register
+                                state: none
+                                props: register()
+
+                                    RegsiterForm
+                                        state: formData
+                                        props: register()
+                            
+                            Logout
+                                state: none
+                                props: logout()
+
+                            Profile
+                                state: none
+                                props: updateUser()     
+
+                                    EditUserForm
+                                        state: formData
+                                        props: updateUser()
+                                        context: currUser       
+
+                            CompanyList                                                 List of all companies
+                                state: companies, needsCompanies, searchTerm
+                                props: none
+
+                                    SearchForm                                          Generic search form
+                                        state: formData
+                                        props: submitSearch()
+
+                                    CompanyCard                                         Company component with title, description and image                                      
+                                        state: None
+                                        props: company
+
+                            CompanyDetails                                              Company component with title, description and list of jobs
+                                state: currCompany, needsCurrCompany
+                                props: none
+
+                                    JobCard                                                 Job component with title, salary and equity
+                                        state: None
+                                        props: job
+                                        context: currUser
+                            
+                            JobList                                                     List of jobs
+                                state: jobs, needsJobs, searchTerm
+                                props: none
+
+                                    SearchForm                                          Generic search form
+                                        state: formData
+                                        props: submitSearch()
+
+                                    JobCard                                             Job component with title, salary and equity
+                                        state: None
+                                        props: job
+                                        context: currUser
+
+                    Navbar                                                              Navbar with home, companies and jobs 
                         state: None
-                        props: company
-
-            CompanyDetails                                              Company component with title, description and list of jobs
-                state: currCompany, needsCurrCompany
-                props: none
-
-                    JobCard                                                 Job component with title, salary and equity
-                        state: None
-                        props: job
-            
-            JobList                                                     List of jobs
-                state: jobs, needsJobs, searchTerm
-                props: none
-
-                    SearchForm                                          Generic search form
-                        state: formData
-                        props: submitSearch()
-
-                    JobCard                                             Job component with title, salary and equity
-                        state: None
-                        props: job
-
-    Navbar                                                              Navbar with home, companies and jobs 
-        state: None
+                        props: none
+                        context: currUser
 
 
