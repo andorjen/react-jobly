@@ -70,6 +70,14 @@ function App() {
       ...updatedUser
     }));
   }
+  /** function that takes jobId
+      * makes api call to add job to user jobs
+      * set currUser to be the updated user info */
+  async function applyToJob(jobId) {
+    await JoblyApi.applyForJob(currUser.username, jobId);
+    const user = await JoblyApi.getUser(currUser.username);
+    setCurrUser(user);
+  }
 
   useEffect(function fetchUserOnTokenChange() {
     /**function that takes token from state and decode the username
@@ -107,6 +115,7 @@ function App() {
             signup={signUp}
             updateUser={updateUser}
             errors={errors}
+            applyToJob={applyToJob}
           />
         </CurrUserContext.Provider>
       </BrowserRouter>

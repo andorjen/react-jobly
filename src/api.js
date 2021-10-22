@@ -134,9 +134,18 @@ class JoblyApi {
    */
 
   static async applyForJob(username, jobId) {
-    const res = await this.request(`users/${username}/jobs/${jobId}`);
+    const res = await this.request(`users/${username}/jobs/${jobId}`, {}, "post");
     return res.applied;
   }
+
+  /**function that gets a job,
+     * takes jobId,
+     * returns job
+     */
+  // static async getJob(jobId) {
+  //   const res = await this.request(`jobs/${jobId}`);
+  //   return res.job;
+  // }
   // obviously, you'll add a lot here ...
 }
 

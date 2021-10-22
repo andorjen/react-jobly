@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import JoblyApi from "./api";
 import SearchForm from "./SearchForm";
-import JobCard from "./JobCard";
+import JobCardList from "./JobCardList";
 import "./JobList";
 import Error from './Error'
 
 /**Renders List of Jobs
  * 
  * Props:
- *  - none
+ *  - applyToJob(): Function to apply to job
  * 
  * State: 
  *  - jobs : [{ id, title, salary, equity, companyHandle, companyName},...]; default is []
@@ -16,10 +16,10 @@ import Error from './Error'
  *  - searchTerm : "string"; default is null
  *  - errors: array of error messages
  * 
- * Routes -> JobList -> JobCard
+ * Routes -> JobList -> JobCardList
  * */
 
-function JobList() {
+function JobList({ applyToJob }) {
     // console.log("JobList: beginning");
 
     const [jobs, setJobs] = useState([]);
@@ -63,10 +63,12 @@ function JobList() {
     return (
         <div className="background-theme">
             <SearchForm submitSearch={searchJobs} initialData={searchTerm} />
-            {jobs.map(job => <JobCard key={job.id} job={job} />)}
+            <JobCardList jobs={jobs} applyToJob={applyToJob} />
         </div>
 
     )
 }
 
 export default JobList;
+
+// {/* {jobs.map(job => <JobCard key={job.id} job={job} />)} */}

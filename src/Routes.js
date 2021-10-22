@@ -12,7 +12,7 @@ import CurrUserContext from "./CurrUserContext";
 /**Renders Routes
  * 
  * Props:
- *  - login() ,signup() , updateUser(), errors
+ *  - login() ,signup() , updateUser(), errors, applyToJob()
  * 
  * State: 
  *  - none
@@ -31,7 +31,7 @@ import CurrUserContext from "./CurrUserContext";
  *          }
 */
 
-function Routes({ login, signup, updateUser, errors }) {
+function Routes({ login, signup, updateUser, errors, applyToJob }) {
     const user = useContext(CurrUserContext);
 
     // const token = localStorage.getItem("token");
@@ -63,10 +63,10 @@ function Routes({ login, signup, updateUser, errors }) {
                         <CompanyList />
                     </Route>
                     <Route exact path="/companies/:handle">
-                        <CompanyDetails />
+                        <CompanyDetails applyToJob={applyToJob} />
                     </Route>
                     <Route exact path="/jobs">
-                        <Joblist />
+                        <Joblist applyToJob={applyToJob} />
                     </Route>
                     <Redirect to="/" />
                 </Switch>
