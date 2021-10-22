@@ -26,52 +26,63 @@ function App() {
 
   // console.log('APP', { currUser, token });
 
-  /**Docstring */
-  //Code review: Be very explicit that this function needs username and password
-  async function login({ username, password }) {
-    try {
-      const token = await JoblyApi.login({ username, password });
-      localStorage.setItem("token", token);
-      setToken(token);
-    } catch (err) {
-      setErrors(err);
-    }
-  }
-  //Code review: Be very explicit that this function needs {...,...}
-  //Code review: Once we fix the token decoding ,don't need setCurrUser in login and signup()
+  /** function that takes {username, password],
+   * makes api call to login user,
+   * get token from login and set token on state and localStorage
+   */
 
-  async function signUp(userData) {
-    // console.log("App userData:", { userData });
-    try {
-      const token = await JoblyApi.register(userData);
-      localStorage.setItem("token", token);
-      setToken(token);
-    } catch (err) {
-      setErrors(err);
-    }
+  async function login({ username, password }) {
+    const token = await JoblyApi.login({ username, password });
+    localStorage.setItem("token", token);
+    setToken(token);
   }
+
+
+  /** function that takes { username, password, firstName, lastName, email }
+   * makes api call to register a new user,
+   * get token from signup and set token on state and localStorage
+   */
+
+  async function signUp({ username, password, firstName, lastName, email }) {
+    // console.log("App userData:", { userData });
+    const token = await JoblyApi.register({ username, password, firstName, lastName, email });
+    localStorage.setItem("token", token);
+    setToken(token);
+  }
+
+  /** function to log out a user, remove token from localStorage, and set currUser to null */
 
   function logout() {
-    localStorage.setItem("token", null);
+    localStorage.removeItem("token");
     setCurrUser(null);
   }
 
-  async function updateUser(formData) {
+  /** function that takes { username, firstName, lastName, password, email  }
+    * makes api call to update information for a user
+    * set currUser to be the updated user info
+    */
+
+  async function updateUser({ username, firstName, lastName, password, email }) {
     try {
-      const updatedUser = await JoblyApi.updateUser(currUser.username, formData); //We're going with this design to prevent cases
-      setCurrUser(updatedUser);                                                   // where the username in the form is tampered with 
+      const updatedUser = await JoblyApi.updateUser(
+        { username, firstName, lastName, password, email });
+      setCurrUser(updatedUser);
     } catch (err) {
       setErrors(err);
     }
   }
-  //CODE REVIEW: We can get username by decoding the token
-  useEffect(function fetchUserOnTokenChange() {
-    async function getUserFromApi() {
 
+
+  useEffect(function fetchUserOnTokenChange() {
+
+    /**function that takes token from state and decode the username
+     * makes api call to get details for user and set currUser 
+     */
+
+    async function getUserFromApi() {
       const payload = jwt_decode(token);
       try {
         const user = await JoblyApi.getUser(payload.username);
-        // console.log("fetch user details", user)
         setCurrUser(user);
       } catch (err) {
         setErrors(err);
@@ -82,21 +93,17 @@ function App() {
 
   return (
     <div className="App">
-
       <BrowserRouter>
+
         <CurrUserContext.Provider value={currUser}>
           <NavBar logout={logout} />
           <Routes login={login} register={signUp} updateUser={updateUser} errors={errors} />
         </CurrUserContext.Provider>
-      </BrowserRouter>
 
+      </BrowserRouter>
     </div>
   );
 }
 
-// style={{
-//   backgroundImage: 'url(/jobly-background.png)',
-//   height: "100vh",
-//   backgroundAttachment: "fixed"
-// }}
+
 export default App;

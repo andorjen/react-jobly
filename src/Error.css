@@ -1,8 +1,9 @@
 .Error {
     background-color: rgb(245, 79, 79);
+    display: block;
     color: white;
-    width: 50%;
-    margin: 30px 25%;
-    padding: 15px;
+    width: 100%;
+  margin-top: 10px;
+    padding: 10px;
     border-radius: 8px;
 }

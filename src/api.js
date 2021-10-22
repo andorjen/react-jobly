@@ -18,8 +18,8 @@ class JoblyApi {
   //   "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
   //   "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
 
-  static token = null;
-
+  static token = localStorage.getItem("token");
+  // static token = null;
   static async request(endpoint, data = {}, method = "get") {
     console.debug("API Call:", endpoint, data, method);
 
@@ -73,30 +73,45 @@ class JoblyApi {
     return res.jobs;
   }
 
-  /** function to log in a user, takes an object loginInfo: {username, password}
+  /** function to log in a user, takes an object {username, password}
    * returns token */
-  static async login(loginInfo) {
-    const res = await this.request("auth/token", loginInfo, "post");
+  static async login({ username, password }) {
+
+    const res = await this.request(
+      "auth/token",
+      { username, password },
+      "post");
+
     this.token = res.token;
     return res.token;
   }
 
   /** function to register a new user
-   * takes an object newUserData: { username, password, firstName, lastName, email }
+   * takes an object  { username, password, firstName, lastName, email }
    * returns token */
-  static async register(newUserData) {
+  static async register({ username, password, firstName, lastName, email }) {
     // console.log("Api newUserData:", { newUserData });
-    const res = await this.request("auth/register", newUserData, "post");
+    const res = await this.request(
+      "auth/register",
+      { username, password, firstName, lastName, email },
+      "post");
+
     this.token = res.token;
     return res.token;
   }
 
   /** function that updates a user's information,
-   * takes an username, and an object userData, can include { firstName, lastName, password, email}
+   * takes an object { username, firstName, lastName, password, email }
    * returns user: { username, firstName, lastName, email, isAdmin }
    */
-  static async updateUser(username, userData) {
-    const res = await this.request(`users/${username}`, userData, "patch");
+  static async updateUser({ username, firstName, lastName, password, email }) {
+    const patchData = { firstName, lastName, email, password };
+
+    const res = await this.request(
+      `users/${username}`,
+      patchData,
+      "patch");
+
     return res.user;
   }
 
@@ -108,6 +123,7 @@ class JoblyApi {
    * */
 
   static async getUser(username) {
+    // console.log('get user', this.token)
     const res = await this.request(`users/${username}`);
     return res.user;
   }

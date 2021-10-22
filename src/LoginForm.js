@@ -6,25 +6,30 @@ import "./LoginForm.css"
  * 
  * Props:
  *  - login(): function that authenticates user data
- *  - errors
  * 
  * State: 
  *  - formData
+ *  - errors
  * 
  * Routes -> LoginForm
  * */
 
-function LoginForm({ login, errors }) {
+function LoginForm({ login }) {
     const [formData, setFormData] = useState({ username: "", password: "" });
+    const [errors, setErrors] = useState([]);
 
     function handleChange(evt) {
         const { name, value } = evt.target
         setFormData(prevData => ({ ...prevData, [name]: value }));
     }
 
-    function handleSubmit(evt) {
-        evt.preventDefault();
-        login(formData);
+    async function handleSubmit(evt) {
+        try {
+            evt.preventDefault();
+            await login(formData);
+        } catch (err) {
+            setErrors(err);
+        }
     }
 
     return (

@@ -6,14 +6,14 @@ import "./SignUpForm.css"
  * 
  * Props:
  *  - register(): function that signs up a new user
- *  - errors
  * 
  * State: 
  *  - formData
+ *  - errors
  * 
  * Routes -> SignUpForm
  * */
-function SignUpForm({ register, errors }) {
+function SignUpForm({ register }) {
     const [formData, setFormData] = useState({
         username: "",
         password: "",
@@ -21,17 +21,20 @@ function SignUpForm({ register, errors }) {
         lastName: "",
         email: ""
     });
-    // const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState([]);
 
     function handleChange(evt) {
         const { name, value } = evt.target;
         setFormData(previousData => ({ ...previousData, [name]: value }));
     }
 
-    function handleSubmit(evt) {
-        // console.log("SignUpForm data:", { formData });
-        evt.preventDefault();
-        register(formData);
+    async function handleSubmit(evt) {
+        try {
+            evt.preventDefault();
+            await register(formData);
+        } catch (err) {
+            setErrors(err)
+        }
     }
 
     return (

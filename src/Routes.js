@@ -39,13 +39,13 @@ function Routes({ login, register, updateUser, errors }) {
             {!user &&
                 <Switch>
                     <Route exact path="/">
-                        <HomePage />
+                        <HomePage errors={errors} />
                     </Route>
                     <Route exact path="/login">
-                        <LoginForm login={login} errors={errors} />
+                        <LoginForm login={login} />
                     </Route>
                     <Route exact path="/signup">
-                        <SignUpForm register={register} errors={errors} />
+                        <SignUpForm register={register} />
                     </Route>
                     <Redirect to="/" />
                 </Switch>
@@ -53,7 +53,7 @@ function Routes({ login, register, updateUser, errors }) {
             {user &&
                 <Switch>
                     <Route exact path="/">
-                        <HomePage />
+                        <HomePage errors={errors} />
                     </Route>
                     <Route exact path="/profile">
                         <ProfileForm updateUser={updateUser} />
