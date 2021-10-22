@@ -5,7 +5,7 @@ import "./SignUpForm.css"
 /**Renders a sign up form
  * 
  * Props:
- *  - register(): function that signs up a new user
+ *  - signup(): function that signs up a new user
  * 
  * State: 
  *  - formData
@@ -13,7 +13,7 @@ import "./SignUpForm.css"
  * 
  * Routes -> SignUpForm
  * */
-function SignUpForm({ register }) {
+function SignUpForm({ signup }) {
     const [formData, setFormData] = useState({
         username: "",
         password: "",
@@ -31,7 +31,7 @@ function SignUpForm({ register }) {
     async function handleSubmit(evt) {
         try {
             evt.preventDefault();
-            await register(formData);
+            await signup(formData);
         } catch (err) {
             setErrors(err)
         }
@@ -57,6 +57,7 @@ function SignUpForm({ register }) {
                             <label htmlFor="password">Password</label>
                             <input
                                 className="form-control"
+                                type="password"
                                 id="password"
                                 name="password"
                                 value={formData.password}

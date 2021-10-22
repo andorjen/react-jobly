@@ -86,10 +86,10 @@ class JoblyApi {
     return res.token;
   }
 
-  /** function to register a new user
+  /** function to signup a new user
    * takes an object  { username, password, firstName, lastName, email }
    * returns token */
-  static async register({ username, password, firstName, lastName, email }) {
+  static async signup({ username, password, firstName, lastName, email }) {
     // console.log("Api newUserData:", { newUserData });
     const res = await this.request(
       "auth/register",
@@ -101,11 +101,11 @@ class JoblyApi {
   }
 
   /** function that updates a user's information,
-   * takes an object { username, firstName, lastName, password, email }
+   * takes an object { username, firstName, lastName, email }
    * returns user: { username, firstName, lastName, email, isAdmin }
    */
-  static async updateUser({ username, firstName, lastName, password, email }) {
-    const patchData = { firstName, lastName, email, password };
+  static async updateUser({ username, firstName, lastName, email }) {
+    const patchData = { firstName, lastName, email };
 
     const res = await this.request(
       `users/${username}`,

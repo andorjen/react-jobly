@@ -12,7 +12,7 @@ import CurrUserContext from "./CurrUserContext";
 /**Renders Routes
  * 
  * Props:
- *  - login() ,register() , updateUser(), errors
+ *  - login() ,signup() , updateUser(), errors
  * 
  * State: 
  *  - none
@@ -31,9 +31,10 @@ import CurrUserContext from "./CurrUserContext";
  *          }
 */
 
-function Routes({ login, register, updateUser, errors }) {
+function Routes({ login, signup, updateUser, errors }) {
     const user = useContext(CurrUserContext);
 
+    // const token = localStorage.getItem("token");
     return (
         <>
             {!user &&
@@ -45,7 +46,7 @@ function Routes({ login, register, updateUser, errors }) {
                         <LoginForm login={login} />
                     </Route>
                     <Route exact path="/signup">
-                        <SignUpForm register={register} />
+                        <SignUpForm signup={signup} />
                     </Route>
                     <Redirect to="/" />
                 </Switch>

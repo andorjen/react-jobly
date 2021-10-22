@@ -52,6 +52,7 @@ function LoginForm({ login }) {
                             <label htmlFor="password">Password</label>
                             <input
                                 className="form-control"
+                                type="password"
                                 id="password"
                                 name="password"
                                 value={formData.password}
