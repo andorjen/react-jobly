@@ -1,7 +1,6 @@
 import { useState, useContext } from "react";
 import CurrUserContext from "./CurrUserContext";
 import Error from "./Error";
-import "./ProfileForm.css";
 
 /**Renders a profile form
  * 
@@ -52,8 +51,8 @@ function ProfileForm({ updateUser }) {
 
     return (
         <div className="background-form">
-            <div className="row ProfileForm">
-                <h1 className="ProfileForm-title">Profile</h1>
+            <div className="row ProfileForm generalForm">
+                <h1 className="ProfileForm-title generalForm-title">Profile</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="col-6 offset-3">
                         <div className="ProfileForm-username">

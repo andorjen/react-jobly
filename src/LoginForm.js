@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Error from "./Error";
-import "./LoginForm.css"
 
 /**Renders a login form
  * 
@@ -34,8 +33,8 @@ function LoginForm({ login }) {
 
     return (
         <div className="background-form">
-            <div className="row LoginForm">
-                <h1 className="pt-3 LoginForm-title">Log In</h1>
+            <div className="row LoginForm generalForm">
+                <h1 className="pt-3 LoginForm-title generalForm-title">Log In</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="col-6 offset-3 pt-3">
                         <div className="LoginForm-username">
