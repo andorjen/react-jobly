@@ -2,7 +2,6 @@ import './HomePage.css';
 import { useContext } from "react";
 import CurrUserContext from "./CurrUserContext";
 
-
 /**Renders HomePage
  * 
  * Props:
@@ -10,6 +9,9 @@ import CurrUserContext from "./CurrUserContext";
  * 
  * State: 
  *  - none
+ * 
+ * Context:
+ *  - currUser
  * 
  * Routes -> HomePage
  * */

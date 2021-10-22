@@ -1,6 +1,4 @@
-import { useState, useContext } from "react";
-import { Redirect } from 'react-router-dom';
-import CurrUserContext from "./CurrUserContext";
+import { useState } from "react";
 import Error from "./Error";
 import "./SignUpForm.css"
 
@@ -13,17 +11,17 @@ import "./SignUpForm.css"
  * State: 
  *  - formData
  * 
- * Context:
- *  - currUser
- * 
- * {Routes} -> SignUpForm
+ * Routes -> SignUpForm
  * */
 function SignUpForm({ register, errors }) {
-    const [formData, setFormData] = useState({ username: "", password: "", firstName: "", lastName: "", email: "" });
+    const [formData, setFormData] = useState({
+        username: "",
+        password: "",
+        firstName: "",
+        lastName: "",
+        email: ""
+    });
     // const [errors, setErrors] = useState([]);
-
-    const user = useContext(CurrUserContext);
-    if (user) return <Redirect to="/" />;
 
     function handleChange(evt) {
         const { name, value } = evt.target;
@@ -31,7 +29,6 @@ function SignUpForm({ register, errors }) {
     }
 
     function handleSubmit(evt) {
-
         // console.log("SignUpForm data:", { formData });
         evt.preventDefault();
         register(formData);
@@ -103,7 +100,5 @@ function SignUpForm({ register, errors }) {
         </div>
     )
 }
-
-
 
 export default SignUpForm;

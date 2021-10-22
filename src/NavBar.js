@@ -13,10 +13,12 @@ import CurrUserContext from "./CurrUserContext";
  * Context:
  * - CurrUserContext
  * 
- * App->NavBar
+ * App -> NavBar
 */
 function NavBar({ logout }) {
+
     const user = useContext(CurrUserContext);
+
     return (
         <nav className="NavBar navbar navbar-light bg-light">
             <div>
