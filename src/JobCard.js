@@ -37,10 +37,10 @@ function JobCard({ job, isApplied, applyToJob }) {
             {Number(equity) > 0 && <p className="JobCard-equity">Equity: {equity}%</p>}
             {errors.length > 0 && <Error messages={errors} />}
             {isApplied &&
-                <button>Applied
+                <button className="btn btn-success col-2 offset-5">Applied
                 </button>}
             {!isApplied &&
-                <button onClick={() => { handleJobApplication(job.id) }}>Apply
+                <button className="btn btn-danger col-2 offset-5" onClick={() => { handleJobApplication(job.id) }}>Apply
                 </button>}
         </div>
     )
